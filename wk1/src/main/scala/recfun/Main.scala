@@ -11,29 +11,24 @@ object Main {
   }
 
   /**
-   * Exercise 1
+    * Exercise 1
     *
     * This version is not tail recursive 
-   */
-    def pascal(c: Int, r: Int): Int = {
-      (c,r) match {
-        case (c,r) if (c > r) => 0
-        case (c,r) if (r<=0 || c<=0) => 1
-        case _ => {
-          val left = pascal(c-1, r-1)
-          val right = pascal(c, r-1)
-          left + right
-        }
-      }
-    }
-  
-  /**
-   * Exercise 2
-   */
-    def balance(chars: List[Char]): Boolean = ???
-  
-  /**
-   * Exercise 3
-   */
-    def countChange(money: Int, coins: List[Int]): Int = ???
+    */
+  def pascal(c: Int, r: Int): Int = {
+    if (c == 0 || c == r) 1
+    else
+      pascal(c, r - 1) + pascal(c - 1, r - 1)
   }
+
+
+  /**
+    * Exercise 2
+    */
+  def balance(chars: List[Char]): Boolean = ???
+
+  /**
+    * Exercise 3
+    */
+  def countChange(money: Int, coins: List[Int]): Int = ???
+}
