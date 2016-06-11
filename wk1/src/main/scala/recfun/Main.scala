@@ -12,21 +12,16 @@ object Main {
 
   /**
    * Exercise 1
+    *
+    * This version is not tail recursive 
    */
     def pascal(c: Int, r: Int): Int = {
       (c,r) match {
-        case (c,r) if (c > r) => {
-          println(s"[$c,$r]=0")
-          0
-        }
-        case (c,r) if (r<=0 || c<=0) => {
-          println(s"($c,$r)=1")
-          1
-        }
+        case (c,r) if (c > r) => 0
+        case (c,r) if (r<=0 || c<=0) => 1
         case _ => {
           val left = pascal(c-1, r-1)
           val right = pascal(c, r-1)
-          println( s"($c,$r)="+ (left + right))
           left + right
         }
       }
