@@ -25,7 +25,24 @@ object Main {
   /**
     * Exercise 2
     */
-  def balance(chars: List[Char]): Boolean = ???
+  def balance(chars: List[Char]): Boolean = {
+    def inner (acc: Int, tail: List[Char]) : Int = {
+      if (tail.isEmpty) acc
+      else {
+        if (acc < 0) acc
+        else {
+          tail.head match {
+            case '(' => inner(acc + 1, tail.tail)
+            case ')' => inner(acc - 1, tail.tail)
+            case _ => inner(acc, tail.tail)
+          }
+        }
+      }
+    }
+    if (inner(0, chars) >= 0) true
+    else
+      false
+  }
 
   /**
     * Exercise 3
