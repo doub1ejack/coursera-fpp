@@ -49,6 +49,11 @@ object Main {
 
   /**
     * Exercise 3
+    * plagiarized from StackOverflow, working on understanding this now
     */
-  def countChange(money: Int, coins: List[Int]): Int = ???
+
+  def countChange(money: Int, coins: List[Int]): Int = coins match {
+    case Nil => if(money == 0) 1 else 0
+    case c::rs => (0 to money/c) map (k => countChange(money-k*c,rs)) sum
+  }
 }
