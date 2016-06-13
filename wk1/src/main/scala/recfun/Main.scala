@@ -62,17 +62,26 @@ object Main {
   
   /**
    * Exercise 3
+    *
+    * Also not tail recursive.  Let's see if that's a problem when submitting
+    * the homework.
    */
     def countChange(money: Int, coins: List[Int]): Int = {
 
-      // money is negative (fail)
-
       // money is zero (success)
+      if (money == 0) { 1 }
 
-      // money is > 0, and money is < all coins (fail)
+      // money is > 0, and there are more coins to try..
+      else if (money > 0 && !coins.isEmpty) {
 
-      // if money > max(coins)
-        // for each number of max(coins) that can be used (call it mC')...
-          // solve the sub-problem of countChange( money-mC', remove(mC, coins) )
+        // try using one of the remaining coins
+        countChange(money - coins.head, coins) +
+          // but also try skipping this coin
+          countChange(money, coins.tail)
+      }
+
+      // money is negative, or we have run out of coins to try (fail)
+      else { 0 }
     }
+
   }
