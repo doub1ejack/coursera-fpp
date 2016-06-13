@@ -63,5 +63,16 @@ object Main {
   /**
    * Exercise 3
    */
-    def countChange(money: Int, coins: List[Int]): Int = ???
+    def countChange(money: Int, coins: List[Int]): Int = {
+
+      // money is negative (fail)
+
+      // money is zero (success)
+
+      // money is > 0, and money is < all coins (fail)
+
+      // if money > max(coins)
+        // for each number of max(coins) that can be used (call it mC')...
+          // solve the sub-problem of countChange( money-mC', remove(mC, coins) )
+    }
   }
