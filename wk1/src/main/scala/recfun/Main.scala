@@ -1,5 +1,7 @@
 package recfun
 
+import scala.annotation.tailrec
+
 object Main {
   def main(args: Array[String]) {
     println("Pascal's Triangle")
@@ -30,7 +32,33 @@ object Main {
   /**
    * Exercise 2
    */
-    def balance(chars: List[Char]): Boolean = ???
+    def balance(chars: List[Char]): Boolean = {
+
+      @tailrec
+      def loop(chars: List[Char], acc: Int): Int = {
+        // end of list
+        if (chars.isEmpty) acc
+
+        // if we start with a closed paren..
+        else if (acc < 0) acc
+
+        // otherwise..
+        else chars match {
+
+          // next char is a close paren
+          case c if (c.head == ')') => loop(c.tail, acc-1)
+
+          // next char is an open paren
+          case c if (c.head == '(') => loop(c.tail, acc+1)
+
+          // next char is anything else
+          case c => loop(c.tail, acc)
+        }
+      }
+
+      if (loop(chars, 0) == 0) true
+      else false
+    }
   
   /**
    * Exercise 3
